@@ -50,7 +50,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PATY_APPS = [
-    'rest-framework',
+    'rest_framework',
     'corsheaders',
 ]
 
