@@ -31,7 +31,7 @@ def RegisterView(request):
 @api_view(['POST'])
 @permission_classes([permissions.AllowAny])
 def LoginView(request):
-    serializer = UserLoginSerializer(data=request.date)
+    serializer = UserLoginSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     user = serializer.validated_data['user']
 

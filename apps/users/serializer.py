@@ -11,8 +11,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, validators=[validate_password])
     class Meta:
         model = User
-        fiedls = ('login', 'email','password')
-        read_only_fields = ('password')
+        fields = ('login', 'email','password')
+        
 
     def validate_email(self, value):
         if not value or not value.strip():
