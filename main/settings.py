@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from decouple import config
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +53,8 @@ DJANGO_APPS = [
 THIRD_PATY_APPS = [
     'rest_framework',
     'corsheaders',
+    'phonenumbers',
+    'drf_yasg'
 ]
 
 LOCAL_APPS = [
@@ -147,6 +150,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny', 
     ],
@@ -181,3 +187,20 @@ X_FRAME_OPTIONS = 'DENY'
 
 
 AUTH_USER_MODEL = 'users.User'
+
+
+SIMPLE_JWT = {
+    # Увеличиваем срок действия Access-токена до 1 дня
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    # Срок действия Refresh-токена — 7 дней
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_REVOKED_TOKENS': False,
+    'UPDATE_LAST_LOGIN': False,
+
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY, # Использует твой SECRET_KEY из decouple
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+}
