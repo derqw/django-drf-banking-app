@@ -1,0 +1,362 @@
+@use '../../variables' as *;
+
+.profile-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, $purple-mid, $purple-deep);
+  box-sizing: border-box;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 21.25rem 1fr;
+    padding: 2.5rem;
+    gap: 3.125rem;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    @media (max-width: 576px) {
+      padding: 1rem;
+      gap: 1.5rem;
+    }
+  }
+}
+
+.profile-sidebar {
+  background: rgba($purple-darkest, 0.6);
+  border-radius: 1rem;
+  padding: 1.875rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  height: fit-content;
+  width: 100%;
+
+  @media (max-width: 576px) {
+    padding: 1.25rem 1rem;
+  }
+
+  &__back-btn {
+    align-self: flex-start;
+    background: $purple-light;
+    border: none;
+    color: inherit;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: lighten($purple-light, 8%);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.875rem;
+  }
+
+  &__avatar {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 576px) {
+      width: 7.5rem;
+      height: 7.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__name {
+    font-size: 1.375rem;
+    text-align: center;
+    margin: 0 0 0.625rem 0;
+    letter-spacing: 0.0625rem;
+
+    @media (max-width: 576px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__location {
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.9;
+  }
+}
+
+.menu-box {
+  background: rgba($purple-deep, 0.7);
+  border-radius: 0.75rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0;
+  box-sizing: border-box;
+
+  @media (max-width: 576px) {
+    padding: 1rem 0;
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: bold;
+    padding: 0.875rem 1.25rem;
+    text-align: center;
+    display: block;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: rgba($white, 0.05);
+    }
+
+    &--active {
+      background: transparent;
+    }
+  }
+
+  &__logout {
+    background: transparent;
+    border: none;
+    color: $grey-dark;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 2.5rem;
+    padding: 0.625rem 1.25rem;
+    width: 100%;
+    text-align: center;
+    transition: color 0.2s ease;
+
+    @media (max-width: 992px) {
+      margin-top: 1.5rem;
+    }
+
+    &:hover {
+      color: $error-red;
+    }
+  }
+}
+
+.profile-main {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.25rem;
+  width: 100%;
+
+  @media (max-width: 992px) {
+    padding-top: 0;
+  }
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 0 0 1.875rem 0;
+    letter-spacing: 0.0625rem;
+
+    @media (max-width: 992px) {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.credit-card {
+  background: $black-deep;
+  width: 100%;
+  max-width: 33.75rem;
+  aspect-ratio: 1.63 / 1;
+  border-radius: 1.5rem;
+  padding: 1.875rem;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  box-shadow: 0 0.9375rem 2.1875rem rgba($black-deep, 0.5);
+
+  @media (max-width: 992px) {
+    margin: 0 auto;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.25rem;
+    border-radius: 1rem;
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo-img {
+    height: 2rem;
+    object-fit: contain;
+
+    @media (max-width: 480px) {
+      height: 1.5rem;
+    }
+  }
+
+  &__number {
+    font-size: 1.375rem;
+    letter-spacing: 0.125rem;
+    align-self: center;
+    text-align: center;
+
+    @media (max-width: 480px) {
+      font-size: 1.1rem;
+      letter-spacing: 0.08rem;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 0.95rem;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__expiry {
+    font-size: 1rem;
+
+    @media (max-width: 480px) {
+      font-size: 0.875rem;
+    }
+  }
+
+  &__holder {
+    font-size: 1rem;
+    letter-spacing: 0.0625rem;
+
+    @media (max-width: 480px) {
+      font-size: 0.875rem;
+    }
+  }
+
+  &__brand-img {
+    position: absolute;
+    bottom: 1.875rem;
+    right: 1.875rem;
+    height: 1.5rem;
+    object-fit: contain;
+
+    @media (max-width: 480px) {
+      bottom: 1.25rem;
+      right: 1.25rem;
+      height: 1.1rem;
+    }
+  }
+}
+
+.slider-dots {
+  display: flex;
+  gap: 0.625rem;
+  margin: 1.5625rem 0 2.1875rem 0;
+  width: 100%;
+  max-width: 33.75rem;
+  justify-content: center;
+
+  @media (max-width: 992px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+
+  &__item {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: $purple-deep;
+    border-radius: 50%;
+
+    &--active {
+      background: $purple-light;
+    }
+  }
+}
+
+.card-options {
+  background: rgba($purple-darkest, 0.6);
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 33.75rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.9375rem 0;
+  box-sizing: border-box;
+
+  @media (max-width: 992px) {
+    margin: 0 auto;
+  }
+
+  &__btn {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.125rem;
+    font-weight: bold;
+    font-family: inherit;
+    text-align: left;
+    padding: 1rem 1.875rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s ease;
+
+    @media (max-width: 480px) {
+      padding: 0.875rem 1.25rem;
+      font-size: 1rem;
+    }
+
+    &:hover {
+      background: rgba($white, 0.03);
+    }
+
+    &--delete {
+      color: $purple-mid;
+
+      &:hover {
+        color: $error-red;
+        background: rgba($error-red, 0.05);
+      }
+    }
+  }
+}

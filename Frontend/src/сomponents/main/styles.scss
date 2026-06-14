@@ -1,0 +1,38 @@
+@use '../../variables' as *;
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-wrapper {
+  background: linear-gradient(-45deg, $purple-mid, $purple-deep);
+  min-height: 100vh;
+}
+
+.main {
+
+  &__block {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-rows: auto auto auto;    
+  }
+
+}
+
+
+
+@media (max-width: 600px) {
+  .main__block {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 20px;
+  }
+}
