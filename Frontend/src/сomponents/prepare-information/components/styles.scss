@@ -1,0 +1,208 @@
+@use '../../../variables' as *;
+
+@keyframes prepare_animation {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+}
+
+@keyframes pixel_spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.prepare {
+  width: clamp(100px, 70vw, 1000px);
+  padding-inline: 4vw;
+  background: rgba(30, 30, 30, 0.4);
+  border-radius: 2%;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  border: 1px solid rgba($black-deep, 0.3);
+  box-shadow: 5px 10px 10px rgba($black-deep, 0.2);
+  margin: 0 auto;
+  animation: prepare_animation 1s ease;
+  padding-block: 3%;
+
+  a {
+    text-decoration: none;
+    color: $white;
+  }
+
+  &__left-block {
+    border-right: 1px solid rgba($grey-dark, 0.2);
+    padding: 5% 0 5% 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 10%;
+  }
+
+  &__text-1 {
+    font-size: clamp(20px, 2vw, 50px);
+  }
+
+  &__text-2 {
+    font-size: clamp(15px, 1.3vw, 40px);
+  }
+
+  &__text-3 {
+    width: 80%;
+    font-size: clamp(10px, 0.9vw, 30px);
+  }
+
+  &__btn {
+    width: 8vw;
+    height: 3vw;
+    font-size: clamp(8px, 0.7vw, 20px);
+    background: $purple-mid;
+    border: 1px solid rgba($black-deep, 0.2);
+    border-radius: 20px;
+    box-shadow: $basic-shadow;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  &__btn:hover {
+    background: rgba($purple-light, 0.6);
+  }
+
+  label {
+    font-size: clamp(12px, 1.1vw, 20px);
+  }
+
+  input[type='number'], input[type='text'], input[type='date'] {
+    font-size: clamp(6px, 0.6vw, 20px);
+    padding: 0.5vw;
+    padding-left: 2vw;
+    border: 1px solid rgba($black-deep, 0.3);
+    background-color: rgba($purple-deep, 0.1);
+    border-radius: 10px;
+    height: clamp(15px, 2vw, 70px);
+    width: clamp(100px, 23vw, 200px);
+    box-shadow: $basic-shadow;
+    margin-block: 2% 4%;
+    transition: border 0.3s ease;
+    color: $white;
+  }
+
+  input[type='number']:hover, input[type='text']:hover, input[type='date']:hover {
+    border: 1px solid rgba($black-deep, 0.8);
+  }
+
+  input[type="number"]:focus, input[type="text"]:focus, input[type='date']:focus {
+    outline: 1px solid $purple-mid;
+  }
+
+  input[type='date'] {
+    width: 89%;
+  }
+
+  &__error-text {
+    color: $error-red;
+    line-height: 1.5;
+    font-size: 10px;
+    margin-bottom: 5px;
+  }
+
+  &__input--error {
+    outline: 1px solid $error-red;
+  }
+
+  &__grid-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  &__avatar-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1% 2% 1% 4%;
+    background: rgba($purple-mid, 0.6);
+    width: 92%;
+    height: 4vw;
+    border-radius: 16px;
+    box-shadow: $basic-shadow;
+    margin-bottom: 5%;
+  }
+
+  &__avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    background: $white;
+    border-radius: 50%;
+    margin-right: 3%;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  &__avatar-upload {
+    margin-left: auto;
+    cursor: pointer;
+    background: $purple-light;
+    border-radius: 20px;
+    box-shadow: $basic-shadow;
+    padding: 2% 3%;
+    text-align: center;
+    transition: background 0.2s ease;
+  }
+
+  &__avatar-upload span {
+    font-size: clamp(9px, 0.6vw, 17px);
+  }
+
+  &__avatar-upload:hover {
+    background: rgba($purple-light, 0.6);
+  }
+
+  &__avatar-text {
+    font-size: clamp(10px, 0.8vw, 20px);
+  }
+
+  input[type='file'] {
+    display: none;
+  }
+
+  &__right-block {
+    button {
+      float: right;
+      margin-right: 7%;
+    }
+  }
+
+  &__text {
+    margin-bottom: 10%;
+    font-size: clamp(13px, 1.7vw, 25px);
+  }
+
+  &__animation-block {
+    width: 7px;
+    height: 7px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 12.5vw auto;
+    box-sizing: content-box;
+    
+    box-shadow: 
+      0 -45px 0 $white,             
+      32px -32px 0 $white,          
+      45px 0 0 $white,              
+      32px 32px 0 rgba($white, 0.7),  
+      0 45px 0 rgba($white, 0.5),     
+      -32px 32px 0 rgba($white, 0.3), 
+      -45px 0 0 rgba($white, 0.2),    
+      -32px -32px 0 rgba($white, 0.1);
+
+    animation: pixel_spinner 1s steps(8) infinite;
+  }
+}

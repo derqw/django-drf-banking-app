@@ -1,0 +1,143 @@
+@use '../../../../variables' as *;
+
+.transactions {
+  background: linear-gradient(-45deg, $purple-mid, $purple-deep);
+  color: $white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__block {
+    $aside-width: 320px;
+
+    display: grid;
+    grid-template-columns: $aside-width 1fr;
+    gap: 3rem;
+    padding: 3rem;
+    position: relative;
+    flex-grow: 1;
+
+    @media (max-width: 992px) {
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 3rem;
+      bottom: 3rem;
+      left: calc(#{$aside-width} + 4rem);
+      width: 1px;
+      background-color: rgba($white, 0.1);
+      pointer-events: none;
+
+      @media (max-width: 992px) {
+        left: calc(#{$aside-width} + 2.5rem);
+        top: 2rem;
+        bottom: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+}
+
+.left-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    gap: 12px;
+  }
+
+  &__hide-mobile {
+    display: contents;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__step,
+  &__text {
+    background-color: $purple-mid;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: $basic-shadow;
+    margin: 0;
+  }
+
+  &__step {
+    background-color: $purple-light;
+    font-weight: bold;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+
+    @media (max-width: 768px) {
+      flex-grow: 1;
+      text-align: center;
+      padding: 12px 16px;
+      font-size: 1.1rem;
+    }
+  }
+
+  &__text {
+    font-size: 1rem;
+    line-height: 1.5;
+    min-height: 6rem;
+  }
+
+  &__arrow {
+    background-color: $purple-mid;
+    color: $white;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: $basic-shadow;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+      width: 45px;
+      height: 45px;
+      padding: 0;
+      border-radius: 50%;
+      aspect-ratio: 1 / 1;
+    }
+
+    &:hover {
+      background-color: lighten($purple-mid, 5%);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}

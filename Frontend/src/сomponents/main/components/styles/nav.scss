@@ -1,0 +1,111 @@
+@use '../../../../variables' as *;
+
+.nav {
+  opacity: 0;
+  animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.1s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5vw 2vw; 
+  grid-column: 1;
+  grid-row: 2;
+  width: clamp(260px, 35vw, 540px);
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  @media (max-width: 992px) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+    margin-top: 30px;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 20px;
+  }
+
+  &__dots {
+    display: flex;
+    gap: clamp(8px, 0.8vw, 14px); 
+    margin-bottom: clamp(20px, 3vw, 40px);
+
+    @media (max-width: 992px) {
+      margin-bottom: 25px;
+      gap: 10px;
+    }
+  }
+
+  &__dot {
+    width: clamp(8px, 0.5vw, 10px);
+    height: clamp(8px, 0.5vw, 10px);
+    border-radius: 50%;
+    background: rgba($white, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+
+    &--active {
+      background: $white;
+      transform: scale(1.1); 
+    }
+  }
+
+  &__icons {
+    display: flex;
+    gap: clamp(45px, 6vw, 90px); 
+    justify-content: space-between;
+    width: 100%;
+
+    @media (max-width: 992px) {
+      justify-content: center;
+      gap: 40px;
+    }
+
+    @media (max-width: 480px) {
+      gap: 30px;
+    }
+  }
+
+  &__icon {
+    width: clamp(54px, 5.2vw, 85px);
+    height: clamp(54px, 5.2vw, 85px);
+    border-radius: 50%;
+    background: rgba($purple-light, 0.15); 
+    border: 1px solid rgba($purple-light, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba($black-deep, 0.3);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+
+    &:hover {
+      background: rgba($purple-light, 0.25);
+      transform: translateY(-2px); 
+      box-shadow: 0 6px 15px rgba($black-deep, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba($black-deep, 0.2);
+    }
+
+    img {
+      width: clamp(24px, 2.4vw, 38px);
+      height: clamp(24px, 2.4vw, 38px);
+      object-fit: contain;
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    &:hover img {
+      opacity: 1; 
+    }
+  }
+}
