@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 
-
-
 class UserManager(BaseUserManager):
     def create_user(self,login, email, password=None, **extra_fields):
         if not email:
@@ -24,7 +22,7 @@ class UserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('SuperUser must have is_superuser=True') 
 
-        return self.create_user(email, login, password, **extra_fields)
+        return self.create_user(login, email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):

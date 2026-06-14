@@ -12,8 +12,14 @@ from .models import (
 
 class KycSerializer(serializers.ModelSerializer):
 
-    dete_of_birth = serializers.DateField(format="%d.%m.%Y", input_formats=("%d.%m.%Y"))
-
+    date_of_birth = serializers.DateField(format="%d.%m.%Y", input_formats=["%d.%m.%Y"])
+    avatar = serializers.ImageField(required=False, allow_null=True)
     class Meta:
         model = KYC
-        fiedls = ('full_name', 'avatar', 'country', 'city', 'mobile_number', 'date_of_birth')
+        fields = ('full_name', 'avatar', 'country', 'city', 'mobile_number', 'date_of_birth')
+
+
+class FilterKycSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=KYC
+        fields = ('avatar', 'full_name')

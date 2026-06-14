@@ -15,10 +15,11 @@ ACCOUNT_STATUS = (
 
 class Account(models.Model):
     '''Сам аккаунт номер, баланс и тд'''
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='plural')
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='accounts')
     account_number = ShortUUIDField(unique=True, length=13, max_length=30, alphabet='1234567890')
     balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
-    account_id = ShortUUIDField(unique=True, length=7, max_length=14, prefix='DIDI', alphabet='1234567890')
+    accountID = ShortUUIDField(unique=True, length=7, max_length=14, prefix='DIDI', alphabet='1234567890')
     account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default='inactive')
     date = models.DateTimeField(auto_now_add=True) 
 
@@ -30,8 +31,8 @@ class Account(models.Model):
 
 class KYC(models.Model):
     '''ДЛЯ РЕГИСТРАЦИИ KYC'''
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    account = models.OneToOneField(Account, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='kyc')
+    account = models.OneToOneField(Account, on_delete=models.CASCADE,related_name='kyc')
     full_name = models.CharField(max_length=150)
     avatar = models.ImageField(upload_to='avatars/%Y/%m', null=True, blank=True)
     mobile_number = PhoneNumberField(region='UA', max_length=40)

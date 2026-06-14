@@ -52,3 +52,21 @@ class UserLoginSerializer(serializers.Serializer):
 
 
 
+class ChangePasswordSerializer(serializers.Serializer):
+    '''Сериалайзер для обновления пароля'''
+    old_password = serializers.CharField(required=True)
+
+    new_password = serializers.CharField(required=True, validators=[validate_password])
+
+    def validate_old_password(self, value):
+        
+        user = self.context['request'].user
+        if not user.check_password(value):
+            raise serializers.ValidationError('The old password is bad')
+        return value
+    
+    def save(self):
+        user = self.context['request'].user
+        user.set_password(self.validated_data['new_password'])
+        user.save()
+        return user

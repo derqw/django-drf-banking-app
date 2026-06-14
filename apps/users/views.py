@@ -8,6 +8,10 @@ from .models import User
 from .serializer import (
     UserRegisterSerializer,
     UserLoginSerializer,
+    ChangePasswordSerializer,
+)
+from apps.account.models import(
+    KYC
 )
 
 @api_view(['POST'])
@@ -38,8 +42,10 @@ def LoginView(request):
     login(request, user)
     refresh = RefreshToken.for_user(user)
 
+    flag = KYC.objects.filter(user=user).exists()
     return Response({
         'user': UserRegisterSerializer(user).data,
+        'flag': flag,
         'refresh': str(refresh),
         'access': str(refresh.access_token),
         'message' : 'The user has logged in successfully'
@@ -63,3 +69,22 @@ def LogOutView(request):
         return Response({
             'error': 'Invalid token'
         }, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class ChangePasswordView(generics.UpdateAPIView):
+    '''Обновление пароля'''
+    serializer_class = ChangePasswordSerializer 
+    permission_classes = [permissions.IsAuthenticated]  
+
+    def get_object(self):
+        return self.request.user 
+
+    def update(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True) 
+        serializer.save() 
+
+        return Response({
+            'message': 'Password changed'
+        },status=status.HTTP_200_OK)
+    
